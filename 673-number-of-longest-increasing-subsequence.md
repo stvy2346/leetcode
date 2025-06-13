@@ -1,4 +1,4 @@
-## [QUESTION_NUMBER] - [QUESTION_TITLE]
+## 673 - Number of longest increasing subsequence
 
 > Difficulty:  Medium
 
