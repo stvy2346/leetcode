@@ -3,13 +3,22 @@
 > Difficulty: Medium 
 
 ## 🧠 Intuition
+Since an arrow can burst any number of overlapping balloons, we want to maximize the number of balloons each arrow hits. If we sort by the end position of each balloon, we can greedily choose to shoot an arrow at the earliest possible moment that still hits the current balloon. This gives us the best chance to cover as many subsequent overlapping balloons as possible, minimizing the number of arrows used.
 
+## 📝 Approach  
+1. **Sort the Balloons**:  
+   Sort the `points` array based on the ending coordinate of each balloon. This allows us to always consider the balloon that ends earliest and try to burst as many overlapping balloons as possible with one arrow.
 
+2. **Initialize**:  
+   Start with one arrow and point it at the end of the first balloon.
 
+3. **Iterate Through Balloons**:  
+   For each subsequent balloon:
+   - If the **start** of the current balloon is greater than the **end** of the last balloon we shot, it means there's no overlap, so we need a new arrow.
+   - Update the arrow position to the **end** of this new balloon.
 
-## 📝 Approach
-
-[Step-by-step explanation of the algorithm, any edge cases considered, and why this approach works.]
+4. **Return the Arrow Count**:  
+   After traversing all balloons, the arrow count will represent the minimum number of arrows required.
 
 
 ## 💻 Code (C++)
@@ -37,19 +46,10 @@ public:
 
 | Complexity | Value |
 |------------|-------|
-| 🕒 Time     | O(n) |
+| 🕒 Time     | O(n log n) |
 | 💾 Space    | O(1) |
 
 > Explanation:
-> - Time: [Explain why the algorithm runs in O(...) time.]
-> - Space: [Explain why the algorithm uses O(...) space.]
+> - **Time:** The dominant operation is sorting the `points` array, which takes **O(n log n)** time, where `n` is the number of balloons. The subsequent loop through all the points takes **O(n)** time. So the total time complexity is **O(n log n)**.
+> - **Space:** The sorting is done in-place, and we only use a few extra variables (`end`, `ans`), so the extra space usage is **O(1)** (constant space).
 
-## 🔁 Alternative Solutions
-
-### 🔹 Approach: [Name of Approach]
-- **Idea:** [Brief explanation of the approach]
-- **Time Complexity:** O(...)
-- **Space Complexity:** O(...)
-- **Why not used:** [e.g., Slower, more complex, not optimal for large inputs]
-
-> Note: Include only if you explored other valid methods or want to show trade-offs.
